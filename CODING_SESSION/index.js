@@ -23,7 +23,7 @@ app.set('views', './views');
 app.use('/', USER_ROUTE);
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Success' });
+  res.json({ message: success });
 });
 
 let uri = `mongodb://localhost/Test`;

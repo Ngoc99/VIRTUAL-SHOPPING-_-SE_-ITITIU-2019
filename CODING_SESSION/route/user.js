@@ -19,7 +19,6 @@ route.route('/register')
   .post(async (req, res) => {
     let { email, password, confirm_password, username } = req.body;
     let user = await USER_MODEL.findOne({ email: email });
-    console.log("User ", user);
 
     if (user)
       return res.render('register', { message: 'User_exist', success: false });
@@ -52,7 +51,6 @@ route.route('/login', redirectToHome)
       return res.render('login', { success: false, message: 'user_not_exist' });
     else if (password !== user.password)
       return res.render('login', { success: false, message: 'Wrong password' });
-    console.log({ email });
 
     req.session.user = user;
 
@@ -60,7 +58,6 @@ route.route('/login', redirectToHome)
   });
 
 route.get('/home', (req, res) => {
-  console.log(req.session.user);
   if (req.session.user)
     return res.render('home', { user: req.session.user });
   return res.render('home', { user: null });

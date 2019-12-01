@@ -2,55 +2,46 @@
 <html lang="en">
 
 <head>
-    <title>p.s: i love me</title>
-    <link rel="stylesheet" href="../public/styles.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>p.s: i love me</title>
+  <link rel="stylesheet" href="../public/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">p.s: i love me</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-            <%if(!user){%>
-            <a href="/login" class="btn btn-secondary mx-1">Login</a href="/login">
-            <a href="/register" class="btn btn-danger">Register</a href="/login">
-            <%}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">HOME <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/product">PRODUCT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sale" tabindex="-1" aria-disabled="true">SALE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about-us" tabindex="-1" aria-disabled="true">ABOUT US</a>
+        </li>
+      </ul>
+      <%if(!user){%>
+      <a href="/login" class="btn btn-secondary mx-1">Login</a href="/login">
+      <a href="/register" class="btn btn-danger">Register</a href="/login">
+      <%}
             else{%>
-            <a href=""><%=user.username%></a>
-            <form action="/logout" method="POST">
-                <button class="btn btn-secondary mx-4" type="submit">Logout</button>
-            </form>
+      <a href=""><%=user.username%></a>
+      <form action="/logout" method="POST">
+        <button class="btn btn-secondary mx-4" type="submit">Logout</button>
+      </form>
 
-            <%}%>
+      <%}%>
 
 
         </div>
@@ -71,9 +62,8 @@
             <!-- Grid column -->
             <div class="col-md-6 mt-md-0 mt-3">
       
-              <!-- Content -->
-              <h5 class="text-uppercase">Footer Content</h5>
-              <p>Here you can use rows and columns to organize your footer content.</p>
+              <h5 class="text-uppercase">Shop With Us</h5>
+             
       
             </div>
             <!-- Grid column -->
@@ -84,20 +74,23 @@
             <div class="col-md-3 mb-md-0 mb-3">
       
               <!-- Links -->
-              <h5 class="text-uppercase">Links</h5>
+              <h5 class="text-uppercase">Help & FAQs</h5>
       
               <ul class="list-unstyled">
                 <li>
-                  <a href="#!">Link 1</a>
+                  <a href="#!">Online Ordering</a>
                 </li>
                 <li>
-                  <a href="#!">Link 2</a>
+                  <a href="#!">International Shipping</a>
                 </li>
                 <li>
-                  <a href="#!">Link 3</a>
+                  <a href="#!">Returns & Exchanges</a>
                 </li>
                 <li>
-                  <a href="#!">Link 4</a>
+                  <a href="#!">Customer Service</a>
+                </li>
+                <li>
+                  <a href="#!">Contact Us</a>
                 </li>
               </ul>
       
@@ -108,20 +101,20 @@
             <div class="col-md-3 mb-md-0 mb-3">
       
               <!-- Links -->
-              <h5 class="text-uppercase">Links</h5>
+              <h5 class="text-uppercase">Account</h5>
       
               <ul class="list-unstyled">
                 <li>
-                  <a href="#!">Link 1</a>
+                  <a href="#!">My Account</a>
                 </li>
                 <li>
-                  <a href="#!">Link 2</a>
+                  <a href="#!">Order Status</a>
                 </li>
                 <li>
-                  <a href="#!">Link 3</a>
+                  <a href="#!">Rewards</a>
                 </li>
                 <li>
-                  <a href="#!">Link 4</a>
+                  <a href="#!">Gift Cards</a>
                 </li>
               </ul>
       
@@ -134,12 +127,7 @@
         </div>
         <!-- Footer Links -->
       
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2018 Copyright:
-          <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-        </div>
-        <!-- Copyright -->
-      
+ 
       </footer>
       <!-- Footer -->
 
