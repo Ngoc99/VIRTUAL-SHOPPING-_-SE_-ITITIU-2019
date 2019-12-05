@@ -2,6 +2,7 @@ let express = require('express');
 let route = express.Router();
 let { PRODUCT_MODEL } = require('../models/product');
 let ObjectID = require('mongoose').Types.ObjectId;
+let { upload } = require('../middleware/multer');
 
 const redirectToHome = (req, res, next) => {
   if (req.session.user) {
@@ -12,50 +13,26 @@ const redirectToHome = (req, res, next) => {
 
 }
 
-route.route('/register')
+route.route('/add-product')
   .get(redirectToHome, (req, res) => {
-    return res.render('register', { success: true });
+    return res.render('add-product', { success: true });
   })
-  .post(async (req, res) => {
-    let { email, password, confirm_password, username } = req.body;
-    let user = await USER_MODEL.findOne({ email: email });
+  .post(upload.array('image', 2), async (req, res) => {
+    let { productID, name, origin, discount, inStock, price, description, } = req.body;
+    let image = req.files;
+    // let product = await PRODUCT_MODEL.findOne({ productID: productID });
 
-    if (user)
-      return res.render('register', { message: 'User_exist', success: false });
-    else if (password !== confirm_password) {
-      return res.render('register', { message: 'Password does not match', success: false });
-    }
-    else {
-      let user = await USER_MODEL.create(req.body);
+    // if (productID)
+    //   return res.render('add-product', { message: 'Product_exist', success: false });
+    // else {
+    let product = await PRODUCT_MODEL.create(req.body);
 
-      req.session.user = user;
-
-      return res.redirect('/home');
-
-      if (!user)
-        res.json({ success: false, message: 'cannot_register' });
-    }
+    return res.redirect('/product');
+    // }
 
 
-  })
-route.route('/login', redirectToHome)
-  .get((req, res) => {
-
-    res.render('login', { success: true, message: 'user_not_exist' });
-  })
-  .post(async (req, res) => {
-    let { email, password } = req.body;
-    let user = await USER_MODEL.findOne({ email });
-
-    if (!user)
-      return res.render('login', { success: false, message: 'user_not_exist' });
-    else if (password !== user.password)
-      return res.render('login', { success: false, message: 'Wrong password' });
-
-    req.session.user = user;
-
-    res.redirect('/home');
   });
+
 
 route.get('/home', (req, res) => {
   if (req.session.user)
@@ -63,20 +40,13 @@ route.get('/home', (req, res) => {
   return res.render('home', { user: null });
 });
 
-route.get('/product', (req, res) => {
+route.get('/product', async (req, res) => {
+  let listProduct = await PRODUCT_MODEL.find({});
+
+
   if (req.session.user)
-    return res.render('product', { user: req.session.user });
-  return res.render('product', { user: null });
+    return res.render('product', { user: req.session.user, listProduct });
+  return res.render('product', { user: null, listProduct });
 });
-
-route.post('/logout', (req, res) => {
-  req.session.destroy();
-
-  res.redirect('/home');
-});
-
-
-
-
 
 exports.PRODUCT_ROUTE = route;

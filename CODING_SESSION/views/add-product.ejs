@@ -13,7 +13,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">p.s: i love me</a>
+    <a class="navbar-brand" href="/home">p.s: i love me</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -43,49 +43,49 @@
     <small class="text-danger"><%=message%></small>
 
     <%}%>
-  <form method="POST" action="/register">
+  <form method="POST" action="/add-product">
     <div class="form-group">
       <label for="exampleInputEmail1">ProductID</label>
       <input name="productID" type="text"
-        placeholder="Enter productID">
+        placeholder="Enter productID" class="form-control" >
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Product Name</label>
       <input name="name" type="text"
-        placeholder="Enter product name">
+        placeholder="Enter product name" class="form-control" >
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Origin</label>
-      <input name="origin" type="text"
+      <input class="form-control"  name="origin" type="text"
         placeholder="Enter product origin">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Discount</label>
-      <input name="discount" type="text"
+      <input class="form-control"  name="discount" type="text"
         placeholder="Enter discount">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Price</label>
-      <input name="price" type="text"
+      <input class="form-control"  name="price" type="text"
         placeholder="Enter product origin">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Description</label>
-      <input name="description" type="text"
+      <input class="form-control"  name="description" type="text"
         placeholder="Enter product origin">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">In Stock</label>
-      <input name="inStock" type="text"
+      <input class="form-control"  name="inStock" type="text"
         placeholder="Enter product origin">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Image</label>
-      <input name="image" type="file"
+      <input class="form-control"  name="image" type="file"
         placeholder="Enter product origin">
     </div>
     
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-success">Add</button>
   </form>
 </div>
 </body>

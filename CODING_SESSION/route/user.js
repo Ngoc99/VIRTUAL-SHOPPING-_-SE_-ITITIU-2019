@@ -69,6 +69,14 @@ route.post('/logout', (req, res) => {
   res.redirect('/home');
 });
 
+route.get('/about-us', (req, res) => {
+  if (req.session.user)
+    return res.render('about-us', { user: req.session.user });
+  return res.render('about-us', { user: null });
+
+
+})
+
 
 
 

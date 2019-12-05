@@ -12,7 +12,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">p.s: i love me</a>
+    <a class="navbar-brand" href="/home">p.s: i love me</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -50,21 +50,21 @@
     </nav>
 
       <h3 class="container">PRODUCT</h3>
-      <form action="/add-product" method="GET">
+      <form action="/add-product" method="GET"  enctype="multipart/form-data">
         <button class="btn btn-secondary mx-4">Add product</button>
       </form>
       <%if(listProduct && listProduct.length>0){%>
-      <ul>
-        <%listProduct.forEach(product=>{%>
-        <li>
-          <div class="container">
-            <div class="row">
+      <div class="container">
+        <div class="row">
+          <ul>
+            <%listProduct.forEach(product=>{%>
+            <li>
               <div class="col-md-3 col-sm-6">
                 <div class="product-grid">
                   <div class="product-image">
                     <a href="">
-                      <img class="pic-1" src=<%=product.image%> alt="">
-                      <img class="pic-2" src="" alt="">
+                      <img class="pic-1" src="<%=product.image[0]%>" alt="">
+                      <img class="pic-2" src="<%=product.image[1]%>" alt="">
                     </a>
                     <span class="product-trend-label">TRENDING</span>
                     <ul class="social">
@@ -76,19 +76,21 @@
                   </div>
                   <div class="product-content">
                     <h3 class="title"><a href=""><%=product.name%></a></h3>
-                    <div class="price"><%product.price%></div>
+                    <div class="price"><%=product.price%></div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </li>
-        <%})%>
-      </ul>
+            </li>
+            <%})%>
+          </ul>
+          <%}%>
 
-      <%}%>
 
-      
+        </div>
+      </div>
+
+
+
       <!-- Footer -->
       <footer class="page-footer font-small blue pt-4 fix-bottom">
 
