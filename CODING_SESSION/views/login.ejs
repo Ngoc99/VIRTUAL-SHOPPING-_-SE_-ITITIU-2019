@@ -11,7 +11,34 @@
 </head>
 
 <body>
-  <!-- <%= include('./nav') %> -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">p.s: i love me</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">HOME <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/product">PRODUCT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sale" tabindex="-1" aria-disabled="true">SALE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about-us" tabindex="-1" aria-disabled="true">ABOUT US</a>
+        </li>
+      </ul>
+      <small class="mx-4">Haven't had an account? </small>
+      <a href="/register" class="btn btn-danger">Register</a href="/login">
+
+
+    </div>
+  </nav>
   <%if(success===false){%>
   <h1 class="text-danger"><%=message%></h1>
   <%}%>

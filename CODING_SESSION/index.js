@@ -3,8 +3,10 @@ let app = express();
 let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 let expressSession = require('express-session');
+let { upload } = require('./middleware/multer');
 
-let { USER_ROUTE } = require('./route/user')
+let { USER_ROUTE } = require('./route/user');
+let { PRODUCT_ROUTE } = require('./route/product');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,10 +22,14 @@ app.use(expressSession({
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.use(express.static('public'));
+
 app.use('/', USER_ROUTE);
+app.use('/', PRODUCT_ROUTE);
+
 
 app.get('/', (req, res) => {
-  res.json({ message: success });
+  res.json({ message: 'success' });
 });
 
 let uri = `mongodb://localhost/Test`;
