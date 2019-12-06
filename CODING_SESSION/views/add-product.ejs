@@ -39,55 +39,44 @@
   </nav>
 
   <div class="container">
-    <%if(success===false){%>
-    <small class="text-danger"><%=message%></small>
 
-    <%}%>
-  <form method="POST" action="/add-product">
-    <div class="form-group">
-      <label for="exampleInputEmail1">ProductID</label>
-      <input name="productID" type="text"
-        placeholder="Enter productID" class="form-control" >
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Product Name</label>
-      <input name="name" type="text"
-        placeholder="Enter product name" class="form-control" >
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Origin</label>
-      <input class="form-control"  name="origin" type="text"
-        placeholder="Enter product origin">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Discount</label>
-      <input class="form-control"  name="discount" type="text"
-        placeholder="Enter discount">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Price</label>
-      <input class="form-control"  name="price" type="text"
-        placeholder="Enter product origin">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Description</label>
-      <input class="form-control"  name="description" type="text"
-        placeholder="Enter product origin">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">In Stock</label>
-      <input class="form-control"  name="inStock" type="text"
-        placeholder="Enter product origin">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Image</label>
-      <input class="form-control"  name="image" type="file"
-        placeholder="Enter product origin">
-    </div>
-    
-    <button type="submit" class="btn btn-success">Add</button>
-  </form>
-</div>
+
+    <form method="POST" action="/add-product" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="exampleInputEmail1">ProductID</label>
+        <input name="productID" type="text" placeholder="Enter productID" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Product Name</label>
+        <input name="name" type="text" placeholder="Enter product name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Origin</label>
+        <input class="form-control" name="origin" type="text" placeholder="Enter product origin">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Discount</label>
+        <input class="form-control" name="discount" type="text" placeholder="Enter discount">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Price</label>
+        <input class="form-control" name="price" type="text" placeholder="Enter product origin">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Description</label>
+        <input class="form-control" name="description" type="text" placeholder="Enter product origin">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">In Stock</label>
+        <input class="form-control" name="inStock" type="text" placeholder="Enter product origin">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Image</label>
+        <input class="form-control" name="image" type="file" placeholder="Enter product origin">
+      </div>
+      <button type="submit" class="btn btn-success">Add</button>
+    </form>
+  </div>
 </body>
 
 </html>

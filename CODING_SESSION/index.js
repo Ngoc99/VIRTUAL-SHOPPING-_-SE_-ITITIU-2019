@@ -4,6 +4,9 @@ let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 let expressSession = require('express-session');
 let { upload } = require('./middleware/multer');
+let path = require('path');
+let outputPath = path.resolve(__dirname, '../public/upload');
+// let fileUpload = require('express-fileupload');
 
 let { USER_ROUTE } = require('./route/user');
 let { PRODUCT_ROUTE } = require('./route/product');
@@ -17,12 +20,17 @@ app.use(expressSession({
   cookie: {
     maxAge: 10 * 60 * 1000 // milli
   }
-}))
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+
+
 app.use(express.static('public'));
+// app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// app.use(fileUpload());
 
 app.use('/', USER_ROUTE);
 app.use('/', PRODUCT_ROUTE);
@@ -31,6 +39,7 @@ app.use('/', PRODUCT_ROUTE);
 app.get('/', (req, res) => {
   res.json({ message: 'success' });
 });
+
 
 let uri = `mongodb://localhost/Test`;
 
