@@ -14,7 +14,7 @@ const redirectToHome = (req, res, next) => {
 }
 
 route.route('/add-product')
-  .get(redirectToHome, (req, res) => {
+  .get((req, res) => {
     if (req.session.user)
       return res.render('add-product', { user: req.session.user, success: true });
 
@@ -41,9 +41,9 @@ route.route('/add-product')
 
     if (productExist)
       return res.render('add-product', { message: 'Product_exist', success: false });
-    // else if (req.files == undefined) {
-    //   res.render('add-product', { message: 'Error:No File Selected' });
-    // }
+    else if (req.files[0].filename == undefined) {
+      res.render('add-product', { message: 'Error:No File Selected' });
+    }
 
     else {
       let product = await PRODUCT_MODEL.create(newProduct);
@@ -70,5 +70,17 @@ route.get('/product', async (req, res) => {
     return res.render('product', { user: req.session.user, listProduct });
   return res.render('product', { user: null, listProduct });
 });
+
+route.route('/productInfo')
+  .get(async (req, res) => {
+    let product = await PRODUCT_MODEL.findOne({});
+
+    if (req.session.user)
+      return res.render('productInfo', { user: req.session.user, product });
+    return res.render('productInfo', { user: null, product });
+  })
+  .post(async (req, res) => {
+
+  })
 
 exports.PRODUCT_ROUTE = route;

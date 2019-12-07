@@ -48,7 +48,7 @@
         </div>
     </nav>
 
-      <h3 class="container">PRODUCT</h3>
+      <h3 class="container header">PRODUCT</h3>
       <%if(user && (user.email==='dpq3005@gmail.com')){%>
       <form action="/add-product" method="GET" enctype="multipart/form-data">
         <button class="btn btn-secondary mx-4">Add product</button>
@@ -77,7 +77,7 @@
                 </ul>
               </div>
               <div class="product-content">
-                <h3 class="title"><a href=""><%=product.name%></a></h3>
+                <h3 class="title"><a href="/productInfo"><%=product.name%></a></h3>
                 <div class=" price"><%=product.price%></div>
               </div>
             </div>

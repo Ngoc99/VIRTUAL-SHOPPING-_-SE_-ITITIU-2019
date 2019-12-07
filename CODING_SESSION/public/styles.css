@@ -128,3 +128,33 @@
     font-size: 22px;
     transition: all 0.3s;
   }
+  .header{
+    font-family: ME;
+    animation: text 3s 1;
+  }
+
+  @keyframes text{
+    0%{
+      color:black;
+    }
+    30%{
+      letter-spacing: 25px;
+    }
+    85%{
+      letter-spacing: 8px;
+    }
+  }
+  @font-face{
+    src:url('ME.ttf');
+    font-family: ME;
+  }
+  image {
+    max-width:50%;
+    height:auto;
+}
+ul{
+  list-style: none;
+}
+
+
+  
