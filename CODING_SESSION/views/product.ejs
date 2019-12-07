@@ -49,21 +49,24 @@
     </nav>
 
       <h3 class="container">PRODUCT</h3>
-      <form action="/add-product" method="GET"  enctype="multipart/form-data">
+      <%if(user && (user.email==='dpq3005@gmail.com')){%>
+      <form action="/add-product" method="GET" enctype="multipart/form-data">
         <button class="btn btn-secondary mx-4">Add product</button>
       </form>
+      <%}%>
+
       <%if(listProduct && listProduct.length>0){%>
       <div class="container">
         <div class="row">
 
           <%listProduct.forEach(product=>{%>
-
           <div class="col-md-3 col-sm-6">
             <div class="product-grid">
               <div class="product-image">
+
                 <a href="">
-                  <img class="pic-1" src="<%=selectedImage%>" alt="">
-                  <img class="pic-2" src="" alt="">
+                  <img class="pic-1" src="<%=product.image1%>" alt="">
+                  <img class="pic-2" src="<%=product.image2%>" alt="">
                 </a>
                 <span class="product-trend-label">TRENDING</span>
                 <ul class="social">

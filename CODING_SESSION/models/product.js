@@ -27,6 +27,8 @@ let productSchema = new Schema({
   description: {
     type: String
   },
+  image1: String,
+  image2: String,
   createAt: {
     type: Date,
     default: Date.now

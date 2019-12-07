@@ -34,7 +34,17 @@
           <a class="nav-link" href="about-us" tabindex="-1" aria-disabled="true">ABOUT US</a>
         </li>
       </ul>
+      <%if(!user){%>
       <a href="/login" class="btn btn-secondary mx-1">Login</a href="/login">
+      <a href="/register" class="btn btn-danger">Register</a href="/login">
+      <%}
+              else{%>
+      <a href=""><%=user.username%></a>
+      <form action="/logout" method="POST">
+        <button class="btn btn-secondary mx-4" type="submit">Logout</button>
+      </form>
+
+      <%}%>
     </div>
   </nav>
 
@@ -71,7 +81,11 @@
         <input class="form-control" name="inStock" type="text" placeholder="Enter product origin">
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Image</label>
+        <label for="exampleInputEmail1">Image1</label>
+        <input class="form-control" name="image" type="file" placeholder="Enter product origin">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Image2</label>
         <input class="form-control" name="image" type="file" placeholder="Enter product origin">
       </div>
       <button type="submit" class="btn btn-success">Add</button>
