@@ -47,11 +47,13 @@
       <%}%>
     </div>
   </nav>
-
   <div class="container">
-
+<%if(success===false){%>
+      <small class="text-danger"><%=message%></small>
+      <%}%>
 
     <form method="POST" action="/add-product" enctype="multipart/form-data">
+
       <div class="form-group">
         <label for="exampleInputEmail1">ProductID</label>
         <input name="productID" type="text" placeholder="Enter productID" class="form-control">
@@ -89,8 +91,8 @@
         <input class="form-control" name="image" type="file" placeholder="Enter product origin">
       </div>
       <button type="submit" class="btn btn-success">Add</button>
-    </form>
-  </div>
+      </form>
+    </div>
 </body>
 
 </html>

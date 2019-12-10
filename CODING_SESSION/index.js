@@ -11,6 +11,7 @@ let outputPath = path.resolve(__dirname, '../public/upload');
 let { USER_ROUTE } = require('./route/user');
 let { PRODUCT_ROUTE } = require('./route/product');
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSession({
@@ -43,7 +44,7 @@ app.get('/', (req, res) => {
 
 let uri = `mongodb://localhost/Test`;
 
-mongoose.connect(uri);
+mongoose.connect(uri, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true });
 mongoose.connection.once('open', () => {
   console.log('mongodb connected');
   app.listen(3000, () => {

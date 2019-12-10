@@ -8,7 +8,42 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    h2 {
+      font-family: sans-serif;
+      color: black;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      background: white;
+      position: relative;
+      animation: text 3s 1;
+    }
+
+    @keyframes text {
+      0% {
+        color: black;
+      }
+
+      30% {
+        letter-spacing: 10px;
+      }
+
+      85% {
+        letter-spacing: 2px;
+      }
+    }
+
+
+
+    @font-face {
+      src: url('Montserrat-Bold.ttf');
+      font-family: MRB;
+    }
+  </style>
 </head>
+
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,17 +83,30 @@
         </div>
     </nav>
     <br>
-<div class="header"><%=product.name%>
-    </div>
-    <div class="row">
-      <img class="col-md-3 image" src="<%=product.image1%>" alt="">
-      <ul class="col-md-6">
-        <li>ORIGIN: <%=product.origin%></li>
-        <li>IN STOCK: <%=product.inStock%></li>
-        <li>DESCRIPTION: <%=product.description%></li>
-      </ul>
-    </div>
-    <div><%=product.price%></div>
+<h2 class="abc"><%=product.name%></h2>
+      <br>
+      <div class="row">
+        <img class="col-md-3 image" src="<%=product.image1%>" alt="">
+        <ul class="col-md-6 list-unstyled">
+          <li><strong>ORIGIN</strong>: <%=product.origin%></li>
+          <li><strong>IN STOCK</strong>: <%=product.inStock%></li>
+          <li><strong>DESCRIPTION</strong>: <%=product.description%></li>
+          <li><strong>Price</strong>: $<%=product.price%></li>
+          <%if(product.discount){%>
+          <li><strong>Discount</strong>: <%=product.discount%></li>
+          <li><strong>Price</strong> : <%=product.discount * product.price%></li>
+
+          <%}%>
+          <br>
+          <br>
+          <form action="/addToCart" method="GET">
+          <button class="btn btn-primary mx-1">Add to cart</button>
+          </form>
+
+          <button class="btn btn-danger mx-1">Purchase</button>
+
+        </ul>
+      </div>
 
 
 
@@ -70,86 +118,88 @@
 
 
 
-    <!-- Footer -->
-    <footer class="page-footer font-small blue pt-4 fix-bottom">
 
-      <!-- Footer Links -->
-      <div class="container-fluid text-center text-md-left">
 
-        <!-- Grid row -->
-        <div class="row">
+      <!-- Footer -->
+      <footer class="page-footer font-small blue pt-4 fix-bottom">
 
-          <!-- Grid column -->
-          <div class="col-md-6 mt-md-0 mt-3">
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
 
-            <h5 class="text-uppercase">Shop With Us</h5>
+          <!-- Grid row -->
+          <div class="row">
 
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
+
+              <h5 class="text-uppercase">Shop With Us</h5>
+
+
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+              <!-- Links -->
+              <h5 class="text-uppercase">Help & FAQs</h5>
+
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#!">Online Ordering</a>
+                </li>
+                <li>
+                  <a href="#!">International Shipping</a>
+                </li>
+                <li>
+                  <a href="#!">Returns & Exchanges</a>
+                </li>
+                <li>
+                  <a href="#!">Customer Service</a>
+                </li>
+                <li>
+                  <a href="#!">Contact Us</a>
+                </li>
+              </ul>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+              <!-- Links -->
+              <h5 class="text-uppercase">Account</h5>
+
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#!">My Account</a>
+                </li>
+                <li>
+                  <a href="#!">Order Status</a>
+                </li>
+                <li>
+                  <a href="#!">Rewards</a>
+                </li>
+                <li>
+                  <a href="#!">Gift Cards</a>
+                </li>
+              </ul>
+
+            </div>
+            <!-- Grid column -->
 
           </div>
-          <!-- Grid column -->
-
-          <hr class="clearfix w-100 d-md-none pb-3">
-
-          <!-- Grid column -->
-          <div class="col-md-3 mb-md-0 mb-3">
-
-            <!-- Links -->
-            <h5 class="text-uppercase">Help & FAQs</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Online Ordering</a>
-              </li>
-              <li>
-                <a href="#!">International Shipping</a>
-              </li>
-              <li>
-                <a href="#!">Returns & Exchanges</a>
-              </li>
-              <li>
-                <a href="#!">Customer Service</a>
-              </li>
-              <li>
-                <a href="#!">Contact Us</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-3 mb-md-0 mb-3">
-
-            <!-- Links -->
-            <h5 class="text-uppercase">Account</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">My Account</a>
-              </li>
-              <li>
-                <a href="#!">Order Status</a>
-              </li>
-              <li>
-                <a href="#!">Rewards</a>
-              </li>
-              <li>
-                <a href="#!">Gift Cards</a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
+          <!-- Grid row -->
 
         </div>
-        <!-- Grid row -->
-
-      </div>
-      <!-- Footer Links -->
+        <!-- Footer Links -->
 
 
-    </footer>
-    <!-- Footer -->
+      </footer>
+      <!-- Footer -->
 
 </body>
 

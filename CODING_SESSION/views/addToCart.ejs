@@ -48,12 +48,7 @@
         </div>
     </nav>
 
-      <h3 class="container header">PRODUCT</h3>
-      <%if(user && (user.email==='dpq3005@gmail.com')){%>
-      <form action="/add-product" method="GET" enctype="multipart/form-data">
-        <button class="btn btn-secondary mx-4">Add product</button>
-      </form>
-      <%}%>
+      <h3 class="container header">MY CART</h3>
 
       <%if(listProduct && listProduct.length>0){%>
       <div class="container">
@@ -79,7 +74,7 @@
                 </ul>
               </div>
               <div class="product-content">
-                <a href="/productInfo/<%=product.productID%>"><%=product.name%></a>
+                <a href="/productInfo/<%=product.name%>"><%=product.name%></a>
                 <div class=" price"><%=product.price%></div>
               </div>
             </div>
@@ -100,24 +95,19 @@
         <!-- Footer Links -->
         <div class="container-fluid text-center text-md-left">
 
-          <!-- Grid row -->
           <div class="row">
 
-            <!-- Grid column -->
             <div class="col-md-6 mt-md-0 mt-3">
 
               <h5 class="text-uppercase">Shop With Us</h5>
 
 
             </div>
-            <!-- Grid column -->
 
             <hr class="clearfix w-100 d-md-none pb-3">
 
-            <!-- Grid column -->
             <div class="col-md-3 mb-md-0 mb-3">
 
-              <!-- Links -->
               <h5 class="text-uppercase">Help & FAQs</h5>
 
               <ul class="list-unstyled">
@@ -139,12 +129,9 @@
               </ul>
 
             </div>
-            <!-- Grid column -->
 
-            <!-- Grid column -->
             <div class="col-md-3 mb-md-0 mb-3">
 
-              <!-- Links -->
               <h5 class="text-uppercase">Account</h5>
 
               <ul class="list-unstyled">
@@ -163,17 +150,13 @@
               </ul>
 
             </div>
-            <!-- Grid column -->
 
           </div>
-          <!-- Grid row -->
 
         </div>
-        <!-- Footer Links -->
 
 
       </footer>
-      <!-- Footer -->
 
 </body>
 
