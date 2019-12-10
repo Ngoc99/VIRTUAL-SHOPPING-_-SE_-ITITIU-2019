@@ -93,10 +93,8 @@ route.route('/productInfo/:id')
   .get(async (req, res) => {
     try {
       let { id } = req.params;
-      console.log(id);
       let product = await PRODUCT_MODEL.findOne({ productID: id });
-      console.log('ákdjkasjdklasjd');
-      console.log(product);
+
       if (req.session.user)
         return res.render('productInfo', { user: req.session.user, product });
       return res.render('productInfo', { user: null, product });
@@ -107,15 +105,25 @@ route.route('/productInfo/:id')
   })
   .post(async (req, res) => {
     try {
-      let { cartID, productID, name, origin, price, image1, totalQuantity, discount, tax, total, totalPay } = req.body;
       let product = new CART_MODEL({
-        cartID, totalQuantity, discount, tax, total, totalPay, productList: {
-          productID, name, origin, price, image1
+        cartID: req.body.cartID,
+        totalQuantity: req.body.totalQuantity,
+        discount: req.body.discount,
+        tax: req.body.tax,
+        total: req.body.total,
+        totalPay: req.body.totalPay,
+        productList: {
+          productID: req.body.productID,
+          name: req.body.name,
+          origin: req.body.origin,
+          price: req.body.price,
+          image1: req.body, image1
         }
       });
+      console.log(product);
       let cart = await product.save();
 
-      res.render('addToCart', { product });
+      // res.render('addToCart', { product });
 
     } catch (error) {
       res.json({ error: true, message: error.message });
