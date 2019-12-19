@@ -27,13 +27,13 @@ route.route('/register')
     }
     else {
       let user = await USER_MODEL.create(req.body);
-
+      if (!user)
+        res.json({ success: false, message: 'cannot_register' });
       req.session.user = user;
 
       return res.redirect('/home');
 
-      if (!user)
-        res.json({ success: false, message: 'cannot_register' });
+
     }
 
 
@@ -68,6 +68,14 @@ route.post('/logout', (req, res) => {
 
   res.redirect('/home');
 });
+
+route.get('/about-us', (req, res) => {
+  if (req.session.user)
+    return res.render('about-us', { user: req.session.user });
+  return res.render('about-us', { user: null });
+
+
+})
 
 
 
