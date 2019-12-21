@@ -34,9 +34,16 @@
   }
 
   .product-grid .product-image img {
-    width: 100%;
-    height: auto;
+    width: 20rem;
+    height: 20rem;
   }
+
+  .img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+
 
   .product-image .pic-1 {
     opacity: 1;

@@ -29,6 +29,10 @@ let productSchema = new Schema({
   },
   image1: String,
   image2: String,
+  category: {
+    type: String,
+    ref: 'category'
+  },
   createAt: {
     type: Date,
     default: Date.now
