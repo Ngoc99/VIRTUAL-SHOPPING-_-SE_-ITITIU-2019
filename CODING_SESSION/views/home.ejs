@@ -1,22 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <title>p.s: i love me</title>
+  <title></title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link rel="stylesheet" href="home.css">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="hover-dropdown.css">
+  <link rel="stylesheet" type="text/css" href="/homepage.css">
 </head>
 
 <body>
@@ -32,16 +21,8 @@
         <li class="nav-item active">
           <a class="nav-link" href="/home">HOME <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="/product" id="navbarDropdown" onclick="redirect(`/product`)"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            PRODUCT
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%category.forEach(item=>{%>
-            <a class="dropdown-item" href="/<%=item.title%>"><%=item.title%></a>
-            <%})%>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" href="/product">PRODUCT</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/sale" tabindex="-1" aria-disabled="true">SALE</a>
@@ -54,30 +35,67 @@
       <a href="/login" class="btn btn-secondary mx-1">Login</a href="/login">
       <a href="/register" class="btn btn-danger">Register</a href="/login">
       <%}
-            else{%>
+              else{%>
       <a href=""><%=user.username%></a>
       <form action="/logout" method="POST">
         <button class="btn btn-secondary mx-4" type="submit">Logout</button>
       </form>
+
       <%}%>
-
-
+    </div>
+  </nav>
+  <div class="con">
+    <div class="column active">
+      <div class="content">
+        <h1> 1 </h1>
+        <div class="box">
+          <h2>title</h2>
+          <p>context context context context context
+            context context context context</p>
         </div>
-    </nav>
-
-      <div class="container">
-        <span class="text1">Shopping</span>
-        <span class="text2">With Us</span>
-       </div>
-
-
-       <script>
-        const redirect = link => {
-          window.location.replace(link);
-        };
-      </script>
-
-
+      </div>
+      <div class="bg bg1"></div>
+    </div>
+    <div class="column active">
+      <div class="content">
+        <h1> 2 </h1>
+        <div class="box">
+          <h2>title</h2>
+          <p>context context context context context
+            context context context context</p>
+        </div>
+      </div>
+      <div class="bg bg2"></div>
+    </div>
+    <div class="column active">
+      <div class="content">
+        <h1> 3 </h1>
+        <div class="box">
+          <h2>title</h2>
+          <p>context context context context context
+            context context context context</p>
+        </div>
+      </div>
+      <div class="bg bg3"></div>
+    </div>
+    <div class="column active">
+      <div class="content">
+        <h1> 4 </h1>
+        <div class="box">
+          <h2>title</h2>
+          <p>context context context context context
+            context context context context</p>
+        </div>
+      </div>
+      <div class="bg bg4"></div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script type="text/javascript">
+    $(document).on('mouseover', '.con .column', function () {
+      $(this).addClass('active').siblings().removeClass('active')
+    })
+  </script>
 </body>
 
 </html>

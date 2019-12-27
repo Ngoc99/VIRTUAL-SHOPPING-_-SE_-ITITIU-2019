@@ -1,0 +1,105 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000000;
+}
+.con{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.con .column
+{
+    width: 25%;
+    height: 100%;
+    float: left;
+    border-right: 2px solid rgba(0,0,0,.5);
+    box-sizing: border-box;
+    z-index: 1;
+}
+.con .column:last-child{
+    border-right: none;
+}
+.con .column .content{
+    position: relative;
+    height: 100%;
+}
+.con .column .content h1{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    background: rgba(0,0,0,.1);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: rgba(255, 255, 255, .2);
+    font-size: 15em;
+    border-top: 2px solid rgba(0,0,0,.5);
+    border-bottom: 2px solid rgba(0,0,0,.5);
+}
+.con .column .content .box{
+    position: absolute;
+    top: 50%;
+    transform: translateY(100%);
+    box-sizing: border-box;
+    padding: 40px;
+    background: rgba(255, 255, 255, .1);
+    text-align: center;
+    transition: 0.5s;
+    opacity: 0;
+}
+.con .column.active .content .box {
+    opacity: 1;
+    transform: translateY(-50%);
+}
+.con .column .content .box h2{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    color: #262626;
+}
+.con .column .content .box p{
+    color: #262626;
+    font-size: 18px;
+
+}
+.con .column .bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+.con .column.active .bg.bg1{
+    background: url(upload/bg1.JPG);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    transition: 0.5s;
+}
+.con .column.active .bg.bg2{
+    background: url(upload/bg2.png);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    transition: 0.5s;
+}
+.con .column.active .bg.bg3{
+    background: url(upload/bg3.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    transition: 0.5s;
+}
+.con .column.active .bg.bg4{
+    background: url(upload/bg4.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    transition: 0.5s;
+}

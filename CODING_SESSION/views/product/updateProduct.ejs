@@ -52,7 +52,9 @@
       <small class="text-danger"><%=message%></small>
       <%}%>
 
-    <form method="POST" action="/updateProduct/<%=pro.productID%>" enctype="multipart/form-data">
+    <form method="POST" action="/updateProduct/<%=product._id%>" enctype="multipart/form-data">
+
+
       <div class="form-group">
         <label for="exampleInputEmail1">Product Name</label>
         <input name="name" type="text" placeholder="Enter product name" class="form-control">
@@ -76,6 +78,7 @@
         <label for="exampleInputEmail1">Description</label>
         <input class="form-control" name="description" type="text" placeholder="Enter product origin">
       </div>
+
       <div class="form-group">
         <label for="exampleInputEmail1">Category</label>
         <%if(category && category.length>0){%>
@@ -89,7 +92,7 @@
 
     </div>
 
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-success">Update</button>
     </form>
     </div>
 </body>

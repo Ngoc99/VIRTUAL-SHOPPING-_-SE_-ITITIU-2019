@@ -3,12 +3,11 @@
 
 <head>
   <title>p.s: i love me</title>
-  <link rel="stylesheet" href="../public/styles.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link rel="stylesheet" href="home.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/styles.css">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -18,7 +17,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="hover-dropdown.css">
+  <link rel="stylesheet" href="/hover-dropdown.css">
 </head>
 
 <body>
@@ -66,60 +65,53 @@
 
         </div>
     </nav>
-    <h3>CART</h3>
-    <table style="width:100%">
-      <tr style="text-align:center">
-        <th>ITEM</th>
-        <th>PRICE</th>
-        <th>QUANTITY</th>
-      </tr>
-      <%if(cart && cart.length>0){%>
-      <%cart.forEach(item=>{%>
-      <tr style="text-align:center">
-        <th style="text-align:left"><img class="img" class="product-image" src="<%=item.image1%>" alt=""><%=item.name%>
-        </th>
-        <th><%=item.price%></th>
-        <th><input type="number"></th>
-      </tr>
-      <%})%>
-      <%}%>
-    </table>
-  
-    <div class="container">
-      <%listProduct.forEach(item=>{%>
-      <div class="row">
-        <div class="col-sm">
-          ITEM
-          <div><%=item.name%></div>
-        </div>
-        <div class="col-sm">
-          PRICE
-          <div><%=item.price%></div>
-        </div>
-        <div class="col-sm">
-          QUANTITY
-          <input type="number">
+      <h3>CART</h3>
+      <form action="/cart/<%=cart._id%>" method="POST">
+      <table style="width:100%">
+        <tr style="text-align:center">
+          <th>ITEM</th>
+          <th>PRICE</th>
+          <th>QUANTITY</th>
+        </tr>
+        <%if(productList && productList.length>0){%>
+        <%productList.forEach(item=>{%>
+        <tr style="text-align:center">
+          <th style="text-align:left"><img class="img" class="product-image" src="<%=item.image1%>"
+              alt=""><%=item.name%>
+          </th>
+          <th>$<%=item.price%></th>
+          <th><input type="number" name="quantity"></th>
 
-          </select>
-        </div>
-        <div class="col-sm">
-          <br>
-          <div>
-            <button>
-              Delete
-            </button></div>
-        </div>
+          <th>
+            <form action="/deleteItemInCart/<%=item._id%>" method="GET"><button type="submit"
+                class="btn btn-danger">Delete</button></form>
+          </th>
+
+        </tr>
+
+        <br>
+
 
         <%})%>
-      </div>
-    </div>
+        <%} %>
+
+      </table>
+
+      <br>
+
+      <a href="/order">
+        <div style="text-align: center;"><button type="submit" class="btn btn-success">PURCHASE</button></div>
+      </a>
+      </form>
 
 
-    <script>
-      const redirect = link => {
-        window.location.replace(link);
-      };
-    </script>
+
+
+      <script>
+        const redirect = link => {
+          window.location.replace(link);
+        };
+      </script>
 
 
 </body>

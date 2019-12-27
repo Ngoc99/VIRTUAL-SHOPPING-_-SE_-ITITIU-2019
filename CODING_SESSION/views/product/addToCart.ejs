@@ -6,7 +6,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/hover-dropdown.css">
 
 </head>
 
@@ -23,8 +27,16 @@
         <li class="nav-item active">
           <a class="nav-link" href="/home">HOME <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/product">PRODUCT</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/product" id="navbarDropdown" onclick="redirect(`/product`)"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PRODUCT
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%category.forEach(item=>{%>
+            <a class="dropdown-item" href="/<%=item.title%>"><%=item.title%></a>
+            <%})%>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/sale" tabindex="-1" aria-disabled="true">SALE</a>
@@ -34,49 +46,85 @@
         </li>
       </ul>
       <%if(!user){%>
+
       <a href="/login" class="btn btn-secondary mx-1">Login</a href="/login">
       <a href="/register" class="btn btn-danger">Register</a href="/login">
       <%}
             else{%>
-      <a href=""><%=user.username%></a>
+      <a href="cartList/<%=cart._id%>"><i class="fa fa-shopping-cart"><%=quantity%></i></a>
+      Hello,<strong><%=user.username%></strong>
       <form action="/logout" method="POST">
         <button class="btn btn-secondary mx-4" type="submit">Logout</button>
       </form>
       <%}%>
 
 
-        </div>
-    </nav>
+    </div>
+  </nav>
+  <%if(title){%>
+      <h3 class="container header">PRODUCT > <%=title%></h3>
 
-      <h3 class="container header">MY CART</h3>
+      <%}else{%>
+      <h3 class="container header">PRODUCT</h3>
+      <%}%>
+      
+      <%if(user && (user.email==='dpq3005@gmail.com')){%>
+      <form action="/add-product" method="GET" enctype="multipart/form-data">
+        <button class="btn btn-secondary mx-4">Add product</button>
+      </form>
+      <form action="/addCategory" method="GET">
+        <button class="btn btn-secondary mx-4">Add category</button>
+      </form>
+      <%}%>
 
       <%if(listProduct && listProduct.length>0){%>
       <div class="container">
+        <div class="row">
+
+          <%listProduct.forEach(product=>{%>
+          <div class="col-md-3 col-sm-6 mx-4">
+            <div class="product-grid">
 
 
-        <%listProduct.forEach(product=>{%>
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="">
-                <img class="pic-1" src="<%=product.image1%>" alt="">
-                <img class="pic-2" src="<%=product.image2%>" alt="">
-              </a>
+              <div class="product-image">
+
+                <a href="">
+                  <img class="pic-1" src="<%=product.image1%>" alt="">
+                  <img class="pic-2" src="<%=product.image2%>" alt="">
+                </a>
+
+                <ul class="social">
+                  <li><a href="/cart/<%=product._id%>" data-tip="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                  </li>
+                  <li><a href="" data-tip="Wishlist"><i class="fa fa-heart"></i></a></li>
+                  <li><a href="" data-tip="Compare"><i class="fa fa-random"></i></a></li>
+                  <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                </ul>
+              </div>
+              <div class="product-content">
+                <a href="/productInfo/<%=product.productID%>"><%=product.name%></a>
+                <%if(user && user.email==='dpq3005@gmail.com'){%>
+                <a href="/deleteProduct/<%=product.productID%>">
+                  <button class="btn btn-danger">Delete</button></a>
+                <a href="/updateProduct/<%=product.productID%>">
+                  <button class="btn btn-primary">Edit</button></a>
+                <%}%>
+                <%if(product.discount>0){%>
+                <div><del>$<%=product.price%></div>
+                <div class=" price" style="color:red">
+                  $<%=Math.round((product.price - product.price*product.discount)*100)/100%></div>
+                <%}else{%>
+                <div>$<%=product.price%></div>
+                <%}%>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="product-content">
-              <a href="/productInfo/<%=product.name%>"><%=product.name%></a>
-              <div class=" price"><%=product.price%></div>
-            </div>
-          </div>
-
         </div>
         <%})%>
 
-        <%}%>
+                <%}%>
 
 
+        </div>
       </div>
 
 
@@ -87,19 +135,24 @@
         <!-- Footer Links -->
         <div class="container-fluid text-center text-md-left">
 
+          <!-- Grid row -->
           <div class="row">
 
+            <!-- Grid column -->
             <div class="col-md-6 mt-md-0 mt-3">
 
               <h5 class="text-uppercase">Shop With Us</h5>
 
 
             </div>
+            <!-- Grid column -->
 
             <hr class="clearfix w-100 d-md-none pb-3">
 
+            <!-- Grid column -->
             <div class="col-md-3 mb-md-0 mb-3">
 
+              <!-- Links -->
               <h5 class="text-uppercase">Help & FAQs</h5>
 
               <ul class="list-unstyled">
@@ -121,9 +174,12 @@
               </ul>
 
             </div>
+            <!-- Grid column -->
 
+            <!-- Grid column -->
             <div class="col-md-3 mb-md-0 mb-3">
 
+              <!-- Links -->
               <h5 class="text-uppercase">Account</h5>
 
               <ul class="list-unstyled">
@@ -142,14 +198,23 @@
               </ul>
 
             </div>
+            <!-- Grid column -->
 
           </div>
+          <!-- Grid row -->
 
         </div>
+        <!-- Footer Links -->
 
 
       </footer>
+      <!-- Footer -->
 
+      <script>
+        const redirect = link => {
+          window.location.replace(link);
+        };
+      </script>
 </body>
 
 </html>

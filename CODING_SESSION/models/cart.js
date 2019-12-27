@@ -3,12 +3,9 @@ let Schema = mongoose.Schema;
 let { productSchema } = require('./product')
 
 let cartSchema = new Schema({
-  cartID: {
-    type: String,
-    require: true
-  },
+
   productList: [{
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'product'
   }],
   quantityEach: {
@@ -36,10 +33,6 @@ let cartSchema = new Schema({
 
 let CartModel = mongoose.model('cart', cartSchema);
 
-function add(item, id) {
-  let arr = [];
-  
 
-}
 
 exports.CART_MODEL = CartModel;

@@ -64,12 +64,14 @@ route.route('/add-product')
 
 
 
-
   });
 
 route.get('/deleteProduct/:id', async (req, res) => {
   let { id } = req.params;
+  let product = await PRODUCT_MODEL.find({});
+  let productFound = await PRODUCT_MODEL.findById({ _id: id });
 
+  productFound.remove();
 
   res.redirect('/product');
 
@@ -80,58 +82,38 @@ route.route('/updateProduct/:id')
   .get(async (req, res) => {
     let { id } = req.params;
     let category = await CATEGORY_MODEL.find({});
-    let product = await PRODUCT_MODEL.findOne({ productID: id }, (err, pro) => {
-      res.render('product/updateProduct', { pro, user: req.session.user, success: true, category });
-    });
+    let product = await PRODUCT_MODEL.findOne({ _id: id });
 
-
+    return res.render('product/updateProduct', { user: req.session.user, success: true, category, product });
   })
   .post(async (req, res) => {
     let { id } = req.params;
-    let updateProduct = {
-      name: req.body,
-      origin: req.body,
-      price: req.body,
-      discount: req.body,
-      description: req.body,
-      category: req.body,
-    };
-    product.update(id, updateProduct, (err) => {
-      if (err) {
-        res.render({ message: error });
-      }
-      else {
-        res.redirect('/product');
-      }
-    })
+    let product = await PRODUCT_MODEL.findOne({ _id: id });
+    // let productUpdate = {
+    //   name: req.body.name,
+    //   origin: req.body.origin,
+    //   discount: parseFloat(req.body.discount),
+    //   price: parseFloat(req.body.price),
+    //   description: req.body.description,
+    //   category: req.body.category
+    // }
+    // product = await PRODUCT_MODEL.findByIdAndUpdate({ _id: id }, { $set: productUpdate }, { new: true });
+    console.log(req.body.name);
+    console.log(product);
+    // return res.redirect('/product');
+
+
+
   })
 
 
 
-
-
-
-
-
-
-
-
-
-// route.get('/sale', async (req, res) => {
-//   let listProduct = await PRODUCT_MODEL.find({ discount });
-//   let category = await CATEGORY_MODEL.find({});
-
-//   console.log(listProduct);
-
-//   return res.render(`product`, { user: req.session.user, listProduct, title, category });
-// })
 
 
 route.route('/product')
   .get(async (req, res) => {
     let listProduct = await PRODUCT_MODEL.find({}).sort({ _id: -1 });
     let category = await CATEGORY_MODEL.find({});
-    let newList = await PRODUCT_MODEL.find({})
 
     return res.render('product/product', { user: req.session.user, listProduct, title: null, category });
   });
@@ -163,35 +145,6 @@ route.route('/productInfo/:id')
 
   })
   .post(async (req, res) => {
-    // try {
-    //   let { id } = req.params;
-    //   let product = await PRODUCT_MODEL.findOne({ productID: id });
-    //   let productList = await CART_MODEL.create(product);
-    //   req.session.cart = cart;
-    //   console.log(id);
-    //   console.log(cart);
-    //   return res.render('product/productInfo', { productList, cart, user: req.session });
-
-    //   // listProduct.push(product);
-    //   // console.log(listProduct);
-    //   // if (cart) {
-    //   //   listProduct.push(product);
-    //   //   return res.render('cart', { listProduct, user: req.session });
-    //   // }
-    //   return res.render('product/cart', { product, user: req.session });
-
-
-    // } catch (error) {
-    //   res.json({ error: true, message: error.message });
-    // }
-
-
-
-
-
-
-
-
 
 
   })
@@ -204,21 +157,14 @@ route.get('/:title', async (req, res) => {
   let listProduct = await PRODUCT_MODEL.find({ category: title });
   let category = await CATEGORY_MODEL.find({});
 
-  if (title === 'cart') {
-    return res.render('product/cart', { user: req.session.user, listProduct, title, category, cart });
-  }
-  else if (title === 'addToCart') {
-    return res.render('product/addToCart', { user: req.session.user, listProduct, title, category });
-  }
-  else if (title === 'sale') {
+
+
+  if (title === 'sale') {
     console.log(listProduct);
     return res.render('product/sale', { user: req.session.user, listProduct, title, category });
   }
-  else if (title === 'order') {
+  if (title === 'order') {
     return res.render('product/order', { user: req.session.user, listProduct, title, category, success: true, cart });
-  }
-  else {
-    return res.render('product/product', { user: req.session.user, listProduct, title, category });
   }
 
 })

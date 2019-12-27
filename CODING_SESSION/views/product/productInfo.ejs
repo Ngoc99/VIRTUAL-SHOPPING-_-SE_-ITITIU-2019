@@ -41,7 +41,7 @@
     }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script>
+  <!-- <script>
     $(document).ready(() => {
 
       $('#addToCart').click(() => {
@@ -58,7 +58,7 @@
       })
 
 
-  </script>
+  </script> -->
 </head>
 
 
@@ -126,15 +126,18 @@
           <br>
           <br>
           <div class="product-grid">
-            <div id="addToCart"><button class="btn btn-primary">Add to cart</button></div>
-          
-        
-
-          <a href="/order" class="btn btn-danger my-2 ">Purchase</button></a>
-
+            <div id="addToCart"> <a href="/cart/<%=product.productID%>"><button class="btn btn-primary">Add
+            to
+            cart</button></a>
       </div>
 
-      </ul>
+
+
+      <a href="/order" class="btn btn-danger my-2 ">Purchase</button></a>
+
+    </div>
+
+    </ul>
     </div>
     </div>
 

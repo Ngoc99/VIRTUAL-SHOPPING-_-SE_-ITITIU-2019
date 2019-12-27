@@ -4,8 +4,7 @@ let Schema = mongoose.Schema;
 let productSchema = new Schema({
   productID: {
     type: String,
-    require: true,
-    unique: true
+    require: true
   },
   name: {
     type: String,
@@ -33,6 +32,10 @@ let productSchema = new Schema({
     type: String,
     ref: 'category'
   },
+  cart: [{
+    type: Schema.Types.ObjectId,
+    ref: 'cart'
+  }],
   createAt: {
     type: Date,
     default: Date.now

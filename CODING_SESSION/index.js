@@ -6,12 +6,10 @@ let expressSession = require('express-session');
 let { upload } = require('./middleware/multer');
 let path = require('path');
 let outputPath = path.resolve(__dirname, '../public/upload');
-let jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-const { window } = new JSDOM();
-const { document } = (new JSDOM('')).window;
-global.document = document;
-var $ = require("jquery")(window);
+
+
+
+
 // let fileUpload = require('express-fileupload');
 
 let { USER_ROUTE } = require('./route/user');

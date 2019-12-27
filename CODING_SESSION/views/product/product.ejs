@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="hover-dropdown.css">
+  <link rel="stylesheet" href="/hover-dropdown.css">
 
 </head>
 
@@ -50,6 +50,7 @@
       <a href="/register" class="btn btn-danger">Register</a href="/login">
       <%}
             else{%>
+      <a href=""><i class="fa fa-shopping-cart"></i></a>
       <a href=""><%=user.username%></a>
       <form action="/logout" method="POST">
         <button class="btn btn-secondary mx-4" type="submit">Logout</button>
@@ -57,9 +58,9 @@
       <%}%>
 
 
-        </div>
-    </nav>
-    <%if(title){%>
+    </div>
+  </nav>
+  <%if(title){%>
       <h3 class="container header">PRODUCT > <%=title%></h3>
 
       <%}else{%>
@@ -92,7 +93,8 @@
                 </a>
 
                 <ul class="social">
-                  <li><a href="" data-tip="Add to cart"><i class="fa fa-shopping-cart"></i></a></li>
+                  <li><a href="/cart/<%=product._id%>" data-tip="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                  </li>
                   <li><a href="" data-tip="Wishlist"><i class="fa fa-heart"></i></a></li>
                   <li><a href="" data-tip="Compare"><i class="fa fa-random"></i></a></li>
                   <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
@@ -101,18 +103,25 @@
               <div class="product-content">
                 <a href="/productInfo/<%=product.productID%>"><%=product.name%></a>
                 <%if(user && user.email==='dpq3005@gmail.com'){%>
-                <a href="/deleteProduct/<%=product.productID%>">
+                <a href="/deleteProduct/<%=product._id%>">
                   <button class="btn btn-danger">Delete</button></a>
-                <a href="/updateProduct/<%=product.productID%>">
+                <a href="/updateProduct/<%=product._id%>">
                   <button class="btn btn-primary">Edit</button></a>
                 <%}%>
-                <div class=" price">$<%=product.price - product.price*product.discount%></div>
+                <%if(product.discount>0){%>
+                <div><del>$<%=product.price%></div>
+                <div class=" price" style="color:red">
+                  $<%=Math.round((product.price - product.price*product.discount)*100)/100%></div>
+                <%}else{%>
+                <div>$<%=product.price%></div>
+                <%}%>
+              
             </div>
           </div>
         </div>
         <%})%>
 
-        <%}%>
+                <%}%>
 
 
         </div>
