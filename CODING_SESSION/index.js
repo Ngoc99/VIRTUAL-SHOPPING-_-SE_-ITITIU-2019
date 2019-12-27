@@ -6,10 +6,20 @@ let expressSession = require('express-session');
 let { upload } = require('./middleware/multer');
 let path = require('path');
 let outputPath = path.resolve(__dirname, '../public/upload');
+let jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = (new JSDOM('')).window;
+global.document = document;
+var $ = require("jquery")(window);
 // let fileUpload = require('express-fileupload');
 
 let { USER_ROUTE } = require('./route/user');
 let { PRODUCT_ROUTE } = require('./route/product');
+let { CATEGORY_ROUTE } = require('./route/category');
+let { CART_ROUTE } = require('./route/cart');
+
+
 
 
 app.use(bodyParser.json());
@@ -28,13 +38,16 @@ app.set('views', './views');
 
 
 
-app.use(express.static('public'));
-// app.use('/public', express.static(path.join(__dirname, 'public')));
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(fileUpload());
 
 app.use('/', USER_ROUTE);
 app.use('/', PRODUCT_ROUTE);
+app.use('/', CATEGORY_ROUTE);
+app.use('/', CART_ROUTE);
+
 
 
 app.get('/', (req, res) => {

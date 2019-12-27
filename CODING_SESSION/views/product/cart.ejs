@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>p.s: i love me</title>
+  <link rel="stylesheet" href="../public/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="hover-dropdown.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/home">p.s: i love me</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">HOME <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/product" id="navbarDropdown" onclick="redirect(`/product`)"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PRODUCT
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%category.forEach(item=>{%>
+            <a class="dropdown-item" href="/<%=item.title%>"><%=item.title%></a>
+            <%})%>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sale" tabindex="-1" aria-disabled="true">SALE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about-us" tabindex="-1" aria-disabled="true">ABOUT US</a>
+        </li>
+      </ul>
+      <%if(!user){%>
+      <a href="/login" class="btn btn-secondary mx-1">Login</a href="/login">
+      <a href="/register" class="btn btn-danger">Register</a href="/login">
+      <%}
+            else{%>
+      <a href=""><%=user.username%></a>
+      <form action="/logout" method="POST">
+        <button class="btn btn-secondary mx-4" type="submit">Logout</button>
+      </form>
+      <%}%>
+
+
+        </div>
+    </nav>
+    <h3>CART</h3>
+    <table style="width:100%">
+      <tr style="text-align:center">
+        <th>ITEM</th>
+        <th>PRICE</th>
+        <th>QUANTITY</th>
+      </tr>
+      <%if(cart && cart.length>0){%>
+      <%cart.forEach(item=>{%>
+      <tr style="text-align:center">
+        <th style="text-align:left"><img class="img" class="product-image" src="<%=item.image1%>" alt=""><%=item.name%>
+        </th>
+        <th><%=item.price%></th>
+        <th><input type="number"></th>
+      </tr>
+      <%})%>
+      <%}%>
+    </table>
+  
+    <div class="container">
+      <%listProduct.forEach(item=>{%>
+      <div class="row">
+        <div class="col-sm">
+          ITEM
+          <div><%=item.name%></div>
+        </div>
+        <div class="col-sm">
+          PRICE
+          <div><%=item.price%></div>
+        </div>
+        <div class="col-sm">
+          QUANTITY
+          <input type="number">
+
+          </select>
+        </div>
+        <div class="col-sm">
+          <br>
+          <div>
+            <button>
+              Delete
+            </button></div>
+        </div>
+
+        <%})%>
+      </div>
+    </div>
+
+
+    <script>
+      const redirect = link => {
+        window.location.replace(link);
+      };
+    </script>
+
+
+</body>
+
+</html>

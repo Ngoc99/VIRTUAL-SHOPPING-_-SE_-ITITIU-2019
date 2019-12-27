@@ -7,7 +7,10 @@ let cartSchema = new Schema({
     type: String,
     require: true
   },
-  productList: [productSchema],
+  productList: [{
+    type: String,
+    ref: 'product'
+  }],
   quantityEach: {
     type: String
   },
@@ -32,5 +35,11 @@ let cartSchema = new Schema({
 });
 
 let CartModel = mongoose.model('cart', cartSchema);
+
+function add(item, id) {
+  let arr = [];
+  
+
+}
 
 exports.CART_MODEL = CartModel;
