@@ -75,14 +75,14 @@ body{
     z-index: -1;
 }
 .container .column.active .bg.bg1{
-    background: url(bg1.JPG);
+    background: url(bg1.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     transition: 0.5s;
 }
 .container .column.active .bg.bg2{
-    background: url(bg2.png);
+    background: url(bg2.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
